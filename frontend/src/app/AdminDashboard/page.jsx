@@ -23,6 +23,9 @@ const AdminDashboard = () => {
   const [editPreview, setEditPreview] = useState(null);
   const [selectedMenu, setSelectedMenu] = useState('dashboard');
   const [toast, setToast] = useState({ show: false, message: '', type: '' });
+  const [type, setType] = useState('');
+  const ADMIN_NAME = 'Admin';
+  const ADMIN_IMG = 'https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff&rounded=true';
   const router = useRouter();
 
   useEffect(() => {
@@ -48,19 +51,20 @@ const AdminDashboard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !desc || !image) return;
+    if (!title || !desc || !image || !type) return;
     setLoading(true);
     setError('');
     try {
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Image = reader.result;
-        const res = await axios.post(API_URL, { title, desc, image: base64Image });
+        const res = await axios.post(API_URL, { title, desc, image: base64Image, type, author: ADMIN_NAME, authorImg: ADMIN_IMG, createdAt: new Date().toISOString() });
         setPosts([res.data, ...posts]);
         setTitle('');
         setDesc('');
         setImage(null);
         setPreview(null);
+        setType('');
         setToast({ show: true, message: 'Blog posted successfully!', type: 'success' });
         setTimeout(() => setToast({ show: false, message: '', type: '' }), 3000);
       };
@@ -150,7 +154,7 @@ const AdminDashboard = () => {
       />
       <div className="ml-56 w-full">
         <div className="mx-auto max-w-3xl px-4 py-8 pt-10">
-          <h1 className="text-3xl font-bold text-center mb-8 text-blue-700">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold text-center mb-8 text-blue-700">Admin Dashboard</h1>
           {toast.show && (
             <div className={`fixed top-6 right-8 z-50 px-6 py-3 rounded shadow-lg text-white font-semibold transition-all ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'}`}>
               {toast.message}
@@ -161,8 +165,8 @@ const AdminDashboard = () => {
               <h2 className="text-2xl font-semibold mb-4 text-blue-700">Welcome, Admin!</h2>
               <p className="text-lg">Total Blogs: <span className="font-bold text-blue-700">{posts.length}</span></p>
               {/* Add more dashboard stats here if needed */}
-            </div>
-          )}
+          </div>
+        )}
           {selectedMenu === 'create' && (
             <MakeBlog
               title={title}
@@ -171,6 +175,8 @@ const AdminDashboard = () => {
               preview={preview}
               loading={loading}
               error={error}
+              type={type}
+              onTypeChange={e => setType(e.target.value)}
               onTitleChange={e => setTitle(e.target.value)}
               onDescChange={e => setDesc(e.target.value)}
               onImageChange={handleImageChange}

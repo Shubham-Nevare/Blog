@@ -1,9 +1,57 @@
 import React from 'react';
 
-const MakeBlog = ({ title, desc, image, preview, loading, error, onTitleChange, onDescChange, onImageChange, onSubmit }) => (
+const BLOG_TYPES = [
+  { value: '', label: 'Select type' },
+  { value: 'News', label: 'News' },
+  { value: 'Business', label: 'Business' },
+  { value: 'Educational', label: 'Educational' },
+  { value: 'Review', label: 'Review' },
+  { value: 'Tech', label: 'Tech' },
+  { value: 'Travel', label: 'Travel' },
+  { value: 'Food', label: 'Food' },
+
+];
+
+const MakeBlog = ({ title, desc, image, preview, loading, error, type, author, authorImg, onTypeChange, onTitleChange, onDescChange, onImageChange, onAuthorChange, onAuthorImgChange, onSubmit }) => (
   <form onSubmit={onSubmit} className="bg-white shadow-md rounded-lg p-6 mb-10 space-y-4">
     <div>
-      <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+      <label htmlFor="type" className="block text-sm font-medium text-blue-700 mb-1">Type of Blog</label>
+      <select
+        id="type"
+        value={type}
+        onChange={onTypeChange}
+        required
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white text-gray-900"
+      >
+        {BLOG_TYPES.map(opt => (
+          <option key={opt.value} value={opt.value} disabled={opt.value === ''}>{opt.label}</option>
+        ))}
+      </select>
+    </div>
+    {/* <div>
+      <label htmlFor="author" className="block text-sm font-medium text-blue-700 mb-1">Author Name</label>
+      <input
+        id="author"
+        type="text"
+        value={author}
+        onChange={onAuthorChange}
+        required
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div> */}
+    {/* <div>
+      <label htmlFor="authorImg" className="block text-sm font-medium text-blue-700 mb-1">Author Image URL</label>
+      <input
+        id="authorImg"
+        type="url"
+        value={authorImg}
+        onChange={onAuthorImgChange}
+        required
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div> */}
+    <div>
+      <label htmlFor="title" className="block text-sm font-medium text-blue-700 mb-1">Title</label>
       <input
         id="title"
         type="text"
@@ -14,7 +62,7 @@ const MakeBlog = ({ title, desc, image, preview, loading, error, onTitleChange, 
       />
     </div>
     <div>
-      <label htmlFor="desc" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+      <label htmlFor="desc" className="block text-sm font-medium text-blue-700 mb-1">Description</label>
       <textarea
         id="desc"
         value={desc}
@@ -25,7 +73,7 @@ const MakeBlog = ({ title, desc, image, preview, loading, error, onTitleChange, 
       />
     </div>
     <div>
-      <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">Image</label>
+      <label htmlFor="image" className="block text-sm font-medium text-blue-700 mb-1">Image</label>
       <input
         id="image"
         type="file"
@@ -44,7 +92,7 @@ const MakeBlog = ({ title, desc, image, preview, loading, error, onTitleChange, 
     <button
       type="submit"
       disabled={loading}
-      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition-colors disabled:opacity-60"
+      className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-md transition-colors disabled:opacity-60"
     >
       {loading ? 'Posting...' : 'Post Blog'}
     </button>
