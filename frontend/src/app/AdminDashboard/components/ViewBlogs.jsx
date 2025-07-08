@@ -43,27 +43,60 @@ const ViewBlogs = ({ posts, loading, onEdit, onDelete, editId, editTitle, editDe
               {post.type}
             </span>
           )}
-          <img src={post.image} alt={post.title} className="w-full h-40 object-cover" />
-          <div className="p-4 flex-1 flex flex-col">
-            <h3 className="text-lg font-bold mb-1 text-blue-700">{post.title}</h3>
-            {/* <p className="text-gray-700 mb-2 flex-1">{post.desc}</p> */}
-            <p className="text-gray-700 flex-1">
-                    {post.desc.length > 120
-                      ? <>
-                          {post.desc.slice(0, 140)}...<span className="text-blue-600 font-semibold ml-1">Read more</span>
-                        </>
-                      : post.desc}
-                  </p>
-            <div className="flex items-center gap-2 mt-4">
-              <img src={post.authorImg || defaultAvatar} alt={post.author || 'Author'} className="w-8 h-8 rounded-full object-cover" />
-              <span className="text-sm font-medium text-gray-900">{post.author || 'Unknown'}</span>
-              <span className="text-gray-400 text-xs">• {timeAgo(post.createdAt)}</span>
-            </div>
-            <div className="flex gap-2 mt-2">
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md font-semibold" onClick={() => onEdit(post)}>Edit</button>
-              <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md font-semibold" onClick={() => onDelete(post._id)}>Delete</button>
-            </div>
-          </div>
+          {editId === post._id ? (
+            <form onSubmit={onEditSubmit} className="p-4 flex-1 flex flex-col space-y-2">
+              <input
+                type="text"
+                value={editTitle}
+                onChange={onEditTitleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
+              />
+              <textarea
+                value={editDesc}
+                onChange={onEditDescChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-vertical"
+                rows={3}
+                required
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={onEditImageChange}
+                className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              />
+              {editPreview && (
+                <img src={editPreview} alt="Preview" className="w-32 h-32 object-cover rounded-lg my-2 border border-gray-200" />
+              )}
+              <div className="flex gap-2 mt-2">
+                <button type="submit" className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md font-semibold">Save</button>
+                <button type="button" className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-md font-semibold" onClick={() => onEdit(null)}>Cancel</button>
+              </div>
+            </form>
+          ) : (
+            <>
+              <img src={post.image} alt={post.title} className="w-full h-40 object-cover" />
+              <div className="p-4 flex-1 flex flex-col">
+                <h3 className="text-lg font-bold mb-1 text-blue-700">{post.title}</h3>
+                <p className="text-gray-700 flex-1">
+                  {post.desc.length > 120
+                    ? <>
+                        {post.desc.slice(0, 120)}...<span className="text-blue-600 font-semibold ml-1">Read more</span>
+                      </>
+                    : post.desc}
+                </p>
+                <div className="flex items-center gap-2 mt-4">
+                  <img src={post.authorImg || defaultAvatar} alt={post.author || 'Author'} className="w-8 h-8 rounded-full object-cover" />
+                  <span className="text-sm font-medium text-gray-900">{post.author || 'Unknown'}</span>
+                  <span className="text-gray-400 text-xs">• {timeAgo(post.createdAt)}</span>
+                </div>
+                <div className="flex gap-2 mt-2">
+                  <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md font-semibold" onClick={() => onEdit(post)}>Edit</button>
+                  <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md font-semibold" onClick={() => onDelete(post._id)}>Delete</button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       ))}
     </div>

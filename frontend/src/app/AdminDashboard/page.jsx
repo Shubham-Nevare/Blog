@@ -79,6 +79,14 @@ const AdminDashboard = () => {
 
   // Edit logic
   const handleEditClick = (post) => {
+    if (!post) {
+      setEditId(null);
+      setEditTitle('');
+      setEditDesc('');
+      setEditImage(null);
+      setEditPreview(null);
+      return;
+    }
     setEditId(post._id);
     setEditTitle(post.title);
     setEditDesc(post.desc);
