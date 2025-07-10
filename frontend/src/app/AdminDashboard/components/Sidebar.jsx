@@ -4,6 +4,8 @@ const menuItems = [
   { key: 'dashboard', label: 'Dashboard' },
   { key: 'manage', label: 'Manage Blog' },
   { key: 'create', label: 'Create New Blog' },
+  { key: 'pending', label: 'Pending Blog' },
+  { key: 'rejected', label: 'Rejected Blog' },
 ];
 
 const Sidebar = ({ selected, onSelect, blogCount, onLogout }) => {

@@ -8,7 +8,7 @@ const typeBadgeStyles = {
   Announcement: 'bg-purple-100 text-purple-700',
 };
 
-const defaultAvatar = 'https://ui-avatars.com/api/?name=User&background=eee&color=888&rounded=true';
+// const defaultAvatar = 'https://ui-avatars.com/api/?name=User&background=eee&color=888&rounded=true';
 
 function timeAgo(dateString) {
   if (!dateString) return '';
@@ -86,7 +86,7 @@ const ViewBlogs = ({ posts, loading, onEdit, onDelete, editId, editTitle, editDe
                     : post.desc}
                 </p>
                 <div className="flex items-center gap-2 mt-4">
-                  <img src={post.authorImg || defaultAvatar} alt={post.author || 'Author'} className="w-8 h-8 rounded-full object-cover" />
+                  <img src={post.authorImg || "default-avatar.webp"} alt={post.author || 'Author'} className="w-8 h-8 rounded-full object-cover" />
                   <span className="text-sm font-medium text-gray-900">{post.author || 'Unknown'}</span>
                   <span className="text-gray-400 text-xs">• {timeAgo(post.createdAt)}</span>
                 </div>

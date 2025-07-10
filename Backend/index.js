@@ -5,6 +5,7 @@ require('dotenv').config();
 
 // ✅ Import blog routes
 const blogRoutes = require('./routes/blogRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 
 // ✅ Use blog routes
 app.use('/api/blog', blogRoutes);
+app.use('/api/user', userRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

@@ -1,18 +1,15 @@
-import React from 'react';
-import BLOG_TYPES from '@/app/data';
-
+import BLOG_TYPES from "@/app/data";
 // const BLOG_TYPES = [
-//   { value: '', label: 'Select type' },
-//   { value: 'News', label: 'News' },
-//   { value: 'Business', label: 'Business' },
-//   { value: 'Educational', label: 'Educational' },
-//   { value: 'Review', label: 'Review' },
-//   { value: 'Tech', label: 'Tech' },
-//   { value: 'Travel', label: 'Travel' },
-//   { value: 'Food', label: 'Food' },
-// ];
-
-const MakeBlog = ({ title, desc, image, preview, loading, error, type, author, authorImg, onTypeChange, onTitleChange, onDescChange, onImageChange, onAuthorChange, onAuthorImgChange, onSubmit }) => (
+//     // { value: '', label: 'Select type' },
+//     // { value: 'News', label: 'News' },
+//     // { value: 'Business', label: 'Business' },
+//     // { value: 'Educational', label: 'Educational' },
+//     // { value: 'Review', label: 'Review' },
+//     // { value: 'Tech', label: 'Tech' },
+//     // { value: 'Travel', label: 'Travel' },
+//     // { value: 'Food', label: 'Food' },
+//   ];
+const UserBlogForm = ({ title, desc, image, preview, type, loading, error, onTitleChange, onDescChange, onImageChange, onTypeChange, onSubmit }) => (
   <form onSubmit={onSubmit} className="bg-white shadow-md rounded-lg p-6 mb-10 space-y-4">
     <div>
       <label htmlFor="type" className="block text-sm font-medium text-blue-700 mb-1">Type of Blog</label>
@@ -28,28 +25,6 @@ const MakeBlog = ({ title, desc, image, preview, loading, error, type, author, a
         ))}
       </select>
     </div>
-    {/* <div>
-      <label htmlFor="author" className="block text-sm font-medium text-blue-700 mb-1">Author Name</label>
-      <input
-        id="author"
-        type="text"
-        value={author}
-        onChange={onAuthorChange}
-        required
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-    </div> */}
-    {/* <div>
-      <label htmlFor="authorImg" className="block text-sm font-medium text-blue-700 mb-1">Author Image URL</label>
-      <input
-        id="authorImg"
-        type="url"
-        value={authorImg}
-        onChange={onAuthorImgChange}
-        required
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-    </div> */}
     <div>
       <label htmlFor="title" className="block text-sm font-medium text-blue-700 mb-1">Title</label>
       <input
@@ -99,4 +74,4 @@ const MakeBlog = ({ title, desc, image, preview, loading, error, type, author, a
   </form>
 );
 
-export default MakeBlog; 
+export default UserBlogForm; 
