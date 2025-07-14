@@ -6,6 +6,7 @@ import MakeBlog from "./components/MakeBlog";
 import ViewBlogs from "./components/ViewBlogs";
 import PendingBlog from "./components/PendingBlog";
 import RejectedBlog from "./components/RejectedBlog";
+import ManageUser from "./components/ManageUser";
 import { useRouter } from "next/navigation";
 
 const API_URL = "http://localhost:5000/api/blog";
@@ -346,6 +347,9 @@ const AdminDashboard = () => {
           )}
           {selectedMenu === "rejected" && (
             <RejectedBlog posts={posts} loading={loading} error={error} />
+          )}
+          {selectedMenu === "manageUser" && (
+            <ManageUser />
           )}
         </div>
       </div>

@@ -121,9 +121,18 @@ export default function UserDashboard() {
       />
       <div className="ml-56 w-full">
         <div className="mx-auto max-w-3xl px-4 py-8 pt-10">
-          <h1 className="text-3xl font-bold text-center mb-8 text-blue-700">
-            User Dashboard
-          </h1>
+          {/* Profile and Heading Row */}
+          <div className="flex items-center justify-between gap-4 mb-8">
+           
+            <h1 className="text-3xl font-bold text-blue-700 ml-4">User Dashboard</h1>
+            <div className="flex items-center gap-2">
+            <img
+              src={user.authorImg || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.name) + '&background=0D8ABC&color=fff&rounded=true'}
+              alt={user.name}
+              className="w-9 h-9 rounded-full object-cover border-2 border-blue-200"
+            />
+            <span className="text-xl font-semibold text-gray-800">{user.name}</span></div>
+          </div>
           {selectedMenu === "dashboard" && (
             <div>
                <div className="text-center text-lg text-gray-700">

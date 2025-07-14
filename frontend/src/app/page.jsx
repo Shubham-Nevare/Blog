@@ -3,20 +3,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from "./components/Navbar";
 import Link from 'next/link';
-import BLOG_TYPES from './data';
+import { BLOG_TYPES, typeBadgeStyles } from './data';
 const API_URL = 'http://localhost:5000/api/blog';
 
-// const BLOG_TYPES = [
-//   { value: '', label: 'Select type' },
-//   { value: 'News', label: 'News' },
-//   { value: 'Business', label: 'Business' },
-//   { value: 'Educational', label: 'Educational' },
-//   { value: 'Review', label: 'Review' },
-//   { value: 'Tech', label: 'Tech' },
-//   { value: 'Travel', label: 'Travel' },
-//   { value: 'Food', label: 'Food' },
-
-// ];
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -41,13 +30,6 @@ const Home = () => {
     setLoading(false);
   };
 
-  const typeBadgeStyles = {
-    News: 'bg-pink-100 text-pink-700',
-    Tutorial: 'bg-blue-100 text-blue-700',
-    Opinion: 'bg-yellow-100 text-yellow-700',
-    Review: 'bg-green-100 text-green-700',
-    Announcement: 'bg-purple-100 text-purple-700',
-  };
   const defaultAvatar = 'https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff&rounded=true';
   function timeAgo(dateString) {
     if (!dateString) return '';

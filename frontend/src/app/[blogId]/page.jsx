@@ -2,14 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
+import {typeBadgeStyles} from '@/app/data';
 
-const typeBadgeStyles = {
-  News: 'bg-pink-100 text-pink-700',
-  Tutorial: 'bg-blue-100 text-blue-700',
-  Opinion: 'bg-yellow-100 text-yellow-700',
-  Review: 'bg-green-100 text-green-700',
-  Announcement: 'bg-purple-100 text-purple-700',
-};
+
 const defaultAvatar = 'https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff&rounded=true';
 function timeAgo(dateString) {
   if (!dateString) return '';

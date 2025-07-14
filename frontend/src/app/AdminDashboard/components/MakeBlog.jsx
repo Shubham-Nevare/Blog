@@ -1,16 +1,6 @@
 import React from 'react';
-import BLOG_TYPES from '@/app/data';
+import {BLOG_TYPES} from '@/app/data';
 
-// const BLOG_TYPES = [
-//   { value: '', label: 'Select type' },
-//   { value: 'News', label: 'News' },
-//   { value: 'Business', label: 'Business' },
-//   { value: 'Educational', label: 'Educational' },
-//   { value: 'Review', label: 'Review' },
-//   { value: 'Tech', label: 'Tech' },
-//   { value: 'Travel', label: 'Travel' },
-//   { value: 'Food', label: 'Food' },
-// ];
 
 const MakeBlog = ({ title, desc, image, preview, loading, error, type, author, authorImg, onTypeChange, onTitleChange, onDescChange, onImageChange, onAuthorChange, onAuthorImgChange, onSubmit }) => (
   <form onSubmit={onSubmit} className="bg-white shadow-md rounded-lg p-6 mb-10 space-y-4">

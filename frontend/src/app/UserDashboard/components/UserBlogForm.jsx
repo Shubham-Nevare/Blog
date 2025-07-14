@@ -1,4 +1,4 @@
-import BLOG_TYPES from "@/app/data";
+import {BLOG_TYPES} from "@/app/data";
 // const BLOG_TYPES = [
 //     // { value: '', label: 'Select type' },
 //     // { value: 'News', label: 'News' },
