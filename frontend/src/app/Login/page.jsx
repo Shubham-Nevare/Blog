@@ -16,7 +16,7 @@ const Login = () => {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/user/login', { email, password });
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, { email, password });
       const user = res.data.user;
       localStorage.setItem('user', JSON.stringify(user));
       if (user.email === 'admin@admin.com') {

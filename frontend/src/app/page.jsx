@@ -4,7 +4,7 @@ import axios from 'axios';
 import Navbar from "./components/Navbar";
 import Link from 'next/link';
 import { BLOG_TYPES, typeBadgeStyles } from './data';
-const API_URL = 'http://localhost:5000/api/blog';
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/blog`;
 
 
 const Home = () => {

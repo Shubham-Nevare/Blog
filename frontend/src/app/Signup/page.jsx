@@ -17,7 +17,7 @@ const Signup = () => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/user/signup', { name, email, password });
+  await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/signup`, { name, email, password });
       router.push('/Login');
     } catch (err) {
       console.error('Signup error:', err.response?.data || err.message);

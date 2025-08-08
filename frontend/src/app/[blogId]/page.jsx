@@ -17,7 +17,7 @@ function timeAgo(dateString) {
   return `${Math.floor(diff / 86400)} days ago`;
 }
 
-const API_URL = 'http://localhost:5000/api/blog';
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/blog`;
 
 export default function BlogDetail() {
   const { blogId } = useParams();

@@ -19,7 +19,7 @@ const ManageUser = () => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5000/api/user/all");
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/all`);
         const usersWithStatus = res.data.map((user) => ({
           ...user,
           status: user.status || "Active",
@@ -44,7 +44,7 @@ const ManageUser = () => {
   // Example action handlers (local only)
   const handleBlock = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/user/${id}/status`, { status: "Blocked" });
+  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}/status`, { status: "Blocked" });
       setUsers((prev) =>
         prev.map((user) =>
           user._id === id ? { ...user, status: "Blocked" } : user
@@ -58,7 +58,7 @@ const ManageUser = () => {
 
   const handleActivate = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/user/${id}/status`, { status: "Active" });
+  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}/status`, { status: "Active" });
       setUsers((prev) =>
         prev.map((user) =>
           user._id === id ? { ...user, status: "Active" } : user
@@ -73,7 +73,7 @@ const ManageUser = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/user/${id}`);
+  await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}`);
       setUsers((prev) => prev.filter((user) => user._id !== id));
       setToast({ show: true, message: "User deleted successfully!" });
       setTimeout(() => setToast({ show: false, message: "" }), 2000);
@@ -115,7 +115,7 @@ const ManageUser = () => {
     setAddUserLoading(true);
     setAddUserError("");
     try {
-      const res = await axios.post("http://localhost:5000/api/user/signup", newUser);
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/signup`, newUser);
       setUsers((prev) => [
         { ...res.data.user, status: newUser.status, _id: res.data.user?._id || Math.random().toString(36) },
         ...prev,
@@ -138,7 +138,7 @@ const ManageUser = () => {
     setEditUserLoading(true);
     setEditUserError("");
     try {
-      const res = await axios.put(`http://localhost:5000/api/user/${editUser._id}`, {
+  const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/user/${editUser._id}`, {
         name: editUser.name,
         email: editUser.email,
         status: editUser.status,

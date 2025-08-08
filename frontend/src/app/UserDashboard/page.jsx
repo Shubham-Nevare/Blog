@@ -9,7 +9,7 @@ import UserPublishedBlog from "./components/UserPublishedBlog";
 import UserPendingBlog from "./components/UserPendingBlog";
 import UserRejectedBlog from "./components/UserRejectedBlog";
 
-const API_URL = "http://localhost:5000/api/blog";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/blog`;
 
 
 export default function UserDashboard() {

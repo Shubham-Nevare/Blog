@@ -9,8 +9,8 @@ import RejectedBlog from "./components/RejectedBlog";
 import ManageUser from "./components/ManageUser";
 import { useRouter } from "next/navigation";
 
-const API_URL = "http://localhost:5000/api/blog";
-const USER_API_URL = "http://localhost:5000/api/user";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/blog`;
+const USER_API_URL = `${process.env.NEXT_PUBLIC_API_URL}/user`;
 
 const AdminDashboard = () => {
   const [title, setTitle] = useState("");
