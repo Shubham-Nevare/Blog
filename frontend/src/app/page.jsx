@@ -4,8 +4,9 @@ import axios from 'axios';
 import Navbar from "./components/Navbar";
 import Link from 'next/link';
 import { BLOG_TYPES, typeBadgeStyles } from './data';
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/blog`;
 
+
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/blog`;
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -23,7 +24,7 @@ const Home = () => {
     try {
       const res = await axios.get(`${API_URL}?status=published`);
       setPosts(res.data);
-      console.log('Total published blogs:', res.data.length);
+      // console.log('Total published blogs:', res.data.length);
     } catch (err) {
       setError('Failed to fetch blog posts');
     }

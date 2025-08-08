@@ -66,7 +66,7 @@ const AdminDashboard = () => {
     try {
       const res = await axios.get(`${API_URL}/stats`);
       setBlogStats(res.data);
-      console.log("Total admin blogs:", res.data.total);
+      // console.log("Total admin blogs:", res.data.total);
      
     } catch (err) {
       // Optionally handle error

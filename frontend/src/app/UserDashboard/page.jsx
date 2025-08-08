@@ -44,10 +44,10 @@ export default function UserDashboard() {
   const fetchUserBlogs = async (userId) => {
     setLoading(true);
     try {
-      console.log("Fetching blogs for userId:", userId);
+      // console.log("Fetching blogs for userId:", userId);
       const res = await axios.get(`${API_URL}/user/${userId}`);
       setPosts(res.data);
-      console.log("Fetched blogs:", res.data);
+      // console.log("Fetched blogs:", res.data);
     } catch (err) {
       setError("Failed to fetch your blogs");
     }
